@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevHack Node Server</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #2563eb);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    nav {
+      width: 100%;
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 8%;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 850px;
+      width: 100%;
+      padding: 50px 35px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      margin-bottom: 22px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #7dd3fc;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    h1 span {
+      color: #38bdf8;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 1.7;
+      color: #dbeafe;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    button,
+    .link-button {
+      border: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.25s;
+    }
+
+    button {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #7dd3fc;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
+    }
+
+    .link-button {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .link-button:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-3px);
+    }
+
+    .features {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .feature {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+      color: #7dd3fc;
+    }
+
+    .feature p {
+      font-size: 15px;
+      margin: 0;
+      color: #cbd5e1;
+    }
+
+    .circle {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    .circle.one {
+      width: 220px;
+      height: 220px;
+      background: #38bdf8;
+      top: 15%;
+      left: 8%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .circle.two {
+      width: 280px;
+      height: 280px;
+      background: #818cf8;
+      right: 8%;
+      bottom: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-25px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle one"></div>
+  <div class="circle two"></div>
+
+  <nav>
+    <div class="logo">Dev<span>Hack</span></div>
+
+    <div>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+
+  <main class="hero">
+    <section class="card">
+      <div class="badge">Node.js Backend Learning Project</div>
+
+      <h1>Hello from <span>DevHack</span></h1>
+
+      <p>
+        This page is sent directly from your Node.js server.
+        You are not just opening an HTML file — your backend is serving this page.
+      </p>
+
+      <div class="buttons">
+        <button onclick="changeTheme()">Change Theme</button>
+        <a class="link-button" href="/about">About Project</a>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <h3>Backend</h3>
+          <p>Your Node.js server sends this page to the browser.</p>
+        </div>
+
+        <div class="feature">
+          <h3>Routing</h3>
+          <p>You can create pages like Home, About, and 404.</p>
+        </div>
+
+        <div class="feature">
+          <h3>Learning</h3>
+          <p>Small projects are the best way to understand backend basics.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built with HTML, CSS, JavaScript and Node.js
+  </footer>
+
+  <script>
+    let darkMode = true;
+
+    function changeTheme() {
+      if (darkMode) {
+        document.body.style.background =
+          "linear-gradient(135deg, #164e63, #0891b2, #22d3ee)";
+      } else {
+        document.body.style.background =
+          "linear-gradient(135deg, #0f172a, #1e293b, #2563eb)";
+      }
+
+      darkMode = !darkMode;
+    }
+  </script>
+</body>
+</html>
